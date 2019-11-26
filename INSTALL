@@ -1,0 +1,114 @@
+========================================
+Building and installing a Gamera toolkit
+========================================
+
+This is generic information about building and installing a Gamera
+toolkit.
+
+**Please make sure that Gamera is built and fully installed before
+proceeding.**
+
+Gamera can be downloaded at http://gamera.informatik.hsnr.de/
+
+Linux (and other \*nix)
+=======================
+
+Install binary packages for Python and wxPython (see correct versions
+at top of this document.)
+
+In addition, your Linux installation should also have:
+
+- libtiff 3.5.x
+- libpng 2.2.x
+- libz
+
+Standard Build and Install
+--------------------------
+
+Gamera toolkits are built using the Python-standard Distutils system.  Open a
+terminal and type::
+
+  python setup.py build
+  sudo python setup.py install
+
+Mac OS-X
+========
+
+OS-X support can be considered working but preliminary at this point.
+Gamera toolkits will only run on El Capitan( 10.11).  We do not plan to support
+earlier versions.  You will need to install the GNU development tools
+(gcc, g++, ld etc.), X11, and Python 3.5 or newer.
+
+Prerequisites
+-------------
+
+wxPython comes in two flavors for OS-X: a native Carbon-based one that
+follows the look-and-feel of OS-X, and a version built on top of
+Gtk+/X11.  The native Carbon version is currently too incomplete to be
+usable for Gamera.  Since there is no official build of the
+Gtk+/X11 version, I have made one available in the Gamera
+SourceForge Files section.
+
+Standard Build and Install
+----------------------------
+
+Download and install the unoffical wxPython-Gtk-X11 distribution from
+the Gamera Files section on SourceForge.
+
+  Alternatively, you can install fink and then build the package
+  wxPython-Py40, which is currently in the unstable branch, (and its
+  dependencies) from source.  You will then need to use the fink
+  version of Python (not the one that Apple provides) to carry out the
+  instructions below.
+
+Gamera is built using the Python-standard Distutils system.  
+
+To build Gamera, open a X11 terminal and type::
+
+  python setup.py build
+
+and then to install (you'll need to have admin priviledges)::
+ 
+  sudo python setup.py install
+
+The scripts can be installed by::
+
+  sudo python setup.py install_scripts -d /usr/bin
+
+.. note:: The ``-d /usr/bin/`` installs the scripts in a reasonable
+  place on the PATH.  If you do not specify it, the scripts are by
+  default installed to ``/System/Library/Frameworks/Python.framework/Versions/3.5/bin``.
+
+Building the documentation
+==========================
+
+Once the the toolkit is built, the documentation can be
+generated and converted to HTML.
+
+Prerequisites
+-------------
+
+Generating documentation requires two third-party Python
+libraries:
+
+  - docutils_ (version 0.3 or later) for handling reStructuredText documents.
+
+  - SilverCity_ (version 0.9 or later) for colorizing source code.
+
+.. _docutils: http://docutils.sourceforge.net/
+.. _SilverCity: http://silvercity.sourceforge.net/
+
+Generating
+----------
+
+To generate the documentation, go to the ``doc`` directory and run the
+``gendoc.py`` script.
+
+Alternatively, you can call the ``gendoc.py`` script with the
+documentation directory as a commandline argument::
+
+   gendoc.py -d /path/to/doc
+
+The output will be placed in the ``doc/html/`` directory.  The contents of
+this directory can be placed on a webserver for convenient viewing.
+
