@@ -1,0 +1,9 @@
+build/
+dist/
+venv/
+
+gamera/toolkits/skeleton/plugins/*.cpp
+*.egg-info
+
+# IDEs
+.idea/

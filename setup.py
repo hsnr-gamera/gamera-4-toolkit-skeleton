@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+from pathlib import Path
 
-from distutils.core import setup
+from setuptools import setup
 
 from gamera import gamera_setup
 
@@ -20,12 +20,16 @@ PLUGIN_PACKAGE = PACKAGE + ".plugins"
 plugins = gamera_setup.get_plugin_filenames(PLUGIN_PATH)
 plugin_extensions = gamera_setup.generate_plugins(plugins, PLUGIN_PACKAGE)
 
+# find gamera include directory
+gamera_include = Path(gamera_setup.__file__).parent.joinpath("include/gamera").__str__()
+
 # This is a standard distutils setup initializer.  If you need to do
 # anything more complex here, refer to the Python distutils documentation.
 setup(name=TOOLKIT_NAME,
-      version="3.0.1",
+      version="4.1.0",
       ext_modules=plugin_extensions,
+      include_dirs=[gamera_include],
       packages=[PACKAGE, PLUGIN_PACKAGE],
       scripts=['scripts/skeleton'],
-      requires=['gamera']
+      install_requires=['gamera>=4.1.0']
       )
