@@ -28,6 +28,7 @@ if __name__ == "__main__":
           ext_modules=plugin_extensions,
           packages=[PACKAGE, PLUGIN_PACKAGE],
           include_dirs=['include/plugins'],
+          python_requires='>=3.5',
           scripts=['scripts/skeleton'],
           install_requires=['gamera>=4.1.0']
           )
