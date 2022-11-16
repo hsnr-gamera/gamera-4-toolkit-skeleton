@@ -20,8 +20,8 @@ PLUGIN_PACKAGE = PACKAGE + ".plugins"
 plugins = gamera_setup.get_plugin_filenames(PLUGIN_PATH)
 plugin_extensions = gamera_setup.generate_plugins(plugins, PLUGIN_PACKAGE)
 
-# This is a standard distutils setup initializer.  If you need to do
-# anything more complex here, refer to the Python distutils documentation.
+# This is a standard setuptools setup initializer. If you need to do
+# anything more complex here, refer to the Python setuptools documentation.
 if __name__ == "__main__":
     setup(name=TOOLKIT_NAME,
           version="4.1.0",
