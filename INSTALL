@@ -25,11 +25,10 @@ In addition, your Linux installation should also have:
 Standard Build and Install
 --------------------------
 
-Gamera toolkits are built using the Python-standard Distutils system.  Open a
-terminal and type::
+Gamera toolkits are can be installed, throw pip. Open a
+terminal in the folder and type::
 
-  python setup.py build
-  sudo python setup.py install
+  pip install .
 
 Mac OS-X
 ========
