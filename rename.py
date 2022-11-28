@@ -7,7 +7,7 @@ from sys import argv
 ignoreFiles = ["rename.py", "turtle.jpg", "__pycache__"]
 
 
-def change_content(change_to, dirname, names):
+def change_content(dirname, names):
     # ignore some dirs
     if basename(dirname) in ignoreFiles:
         return
@@ -26,12 +26,20 @@ def change_content(change_to, dirname, names):
             open(full_path, "w").write(content)
         elif isdir(full_path):
             for baseDir, dirName, fileNames in walk(full_path):
-                change_content(change_to, baseDir, fileNames)
+                change_content(baseDir, fileNames)
 
 
-def rename_files(change_to, dirname, names):
+def rename_files(dirname, names):
     # ignore some dirs
     if basename(dirname) in ignoreFiles:
+        return
+
+    # rename dir
+    if basename(dirname).__eq__(change_from):
+        newdirname = dirname.replace(change_from, change_to)
+        rename(dirname, newdirname)
+        for baseDir, dirName, fileNames in walk(newdirname):
+            rename_files(baseDir, fileNames)
         return
 
     for name in names:
@@ -41,9 +49,9 @@ def rename_files(change_to, dirname, names):
         full_path = join(dirname, name)
         if isdir(full_path):
             for baseDir, dirName, fileNames in walk(full_path):
-                rename_files(baseDir, fileNames, change_to)
+                rename_files(baseDir, fileNames)
         if name.find(change_from) != -1:
-            new_name = name.replace(change_from, change_to)
+            new_name = name.replace(change_from)
             print("Renaming %s to %s" % (full_path, join(dirname, new_name)))
             rename(full_path, join(dirname, new_name))
 
@@ -52,6 +60,6 @@ change_from = 'skeleton'
 change_to = argv[-1].lower()
 print("Changing name of toolkit project to '%s'." % change_to)
 for directory, dirnames, filenames in walk("."):
-    change_content(change_to, directory, filenames)
+    change_content(directory, filenames)
 for directory, dirnames, filenames in walk("."):
-    rename_files(change_to, directory, filenames)
+    rename_files(directory, filenames)
