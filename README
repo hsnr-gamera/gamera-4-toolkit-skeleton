@@ -27,11 +27,11 @@ Python package.
 Creating a toolkit
 ------------------
 
-The directory heirarchy
+The directory hierarchy
 ```````````````````````
 
 Toolkits require a number of different files in a directory
-heirarchy.  Here we assume the toolkit is called ``my_toolkit``.
+hierarchy.  Here we assume the toolkit is called ``my_toolkit``.
 
 +----------+----------------------------------------------------------------+
 | ./       | Basic information files for building the toolkit               |

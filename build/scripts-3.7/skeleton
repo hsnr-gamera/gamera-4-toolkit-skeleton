@@ -1,7 +1,0 @@
-#!/usr/local/bin/python3.7
-
-# This just simply runs the skeleton toolkits main function
-
-from gamera.toolkits.skeleton import main
-
-main.main()
