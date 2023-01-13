@@ -25,10 +25,10 @@ In addition, your Linux installation should also have:
 Standard Build and Install
 --------------------------
 
-Gamera toolkits are can be installed, throw pip. Open a
+Gamera toolkits are can be installed, throough pip. Open a
 terminal in the folder and type::
 
-  pip install .
+  pip3 install .
 
 Mac OS-X
 ========
