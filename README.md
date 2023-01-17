@@ -1,10 +1,10 @@
-Skeleton Toolkit for Gamera 4
-=============================
+# Skeleton Toolkit for Gamera 4
+
 
 Toolkit skeleton for Gamera 4 and Python 3.
 
-What is a toolkit?
-------------------
+## What is a toolkit?
+
 
 A toolkit is a way to distribute code that uses Gamera but is not
 included in the Gamera source tree.  This could be entire
@@ -15,7 +15,7 @@ functions (eg. for color image processing).
 The Gamera toolkit framework actually provides very little beyond the
 standard Python package and module system on which it is based:
 
-- A special Python distutils-based framework for building Gamera
+- A special Python setuptools-based framework for building Gamera
   plugins more conveniently.
 - Support for adding a toolkit-specific drop-down menu to the Gamera
   GUI.
@@ -24,71 +24,101 @@ If neither of these features is necessary for your project, you may
 decide to simply release your application or library as a standard
 Python package.
 
-Creating a toolkit
-------------------
+## Creating a toolkit
 
-The directory hierarchy
-```````````````````````
+
+### The directory hierarchy
+
 
 Toolkits require a number of different files in a directory
 hierarchy.  Here we assume the toolkit is called ``my_toolkit``.
 
-+----------+----------------------------------------------------------------+
-| ./       | Basic information files for building the toolkit               |
-|          +---------------+------------------------------------------------+
-|          | setup.py      | A Python ``distutils``-based build script.     |
-+----------+---------------+------------------------------------------------+
-| gamera/  | All the files needed by Gamera at runtime.                     |
-|          | Since Python is interpreted, these means                       |
-|          | Python source files.                                           |
-|          +---------------+------------------------------------------------+
-|          | toolkits/     | This is where the Python source code of the    |
-|          | my_toolkit    | toolkit goes.                                  |
-|          +---------------+------------------------------------------------+
-|          | toolkits/     | This is where the Gamera plugins for the       |
-|          | my_toolkit/   | toolkit go.                                    |
-|          | plugins/      |                                                |
-+----------+---------------+------------------------------------------------+
-| include/ | C++ header (``.hpp``) files.                                   |
-|          +---------------+------------------------------------------------+
-|          | plugins/      | Source code for the C++-based plugins.         |
-+----------+---------------+------------------------------------------------+
+<table class="docutils">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr><td rowspan="2">./</td>
+<td colspan="2">Basic information files for building the toolkit</td>
+</tr>
+<tr><td>setup.py</td>
+<td>A Python setuptools-based build script.</td>
+</tr>
+<tr><td rowspan="3">gamera/</td>
+<td colspan="2">All the files needed by Gamera at runtime.
+Since Python is interpreted, these means
+Python source files.</td>
+</tr>
+<tr><td>toolkits/
+my_toolkit</td>
+<td>This is where the Python source code of the
+toolkit goes.</td>
+</tr>
+<tr><td>toolkits/
+my_toolkit/
+plugins/</td>
+<td>This is where the Gamera plugins for the
+toolkit go.</td>
+</tr>
+<tr><td rowspan="2">include/</td>
+<td colspan="2">C++ header (<tt class="docutils literal">.hpp</tt>) files.</td>
+</tr>
+<tr><td>plugins/</td>
+<td>Source code for the C++-based plugins.</td>
+</tr>
+<tr><td>scripts/</td>
+<td colspan="2">Command line scripts</td>
+</tr>
+<tr><td rowspan="4">doc/</td>
+<td colspan="2">Documentation</td>
+</tr>
+<tr><td>gendoc.py</td>
+<td>A script to generate the documentation using
+the Gamera documentation system.</td>
+</tr>
+<tr><td>src/</td>
+<td>The source files for the narrative
+documentation.</td>
+</tr>
+<tr><td>html/</td>
+<td>The HTML output from the Gamera documentation
+system.</td>
+</tr>
+</tbody>
+</table>
 
 Some toolkits may go beyond this, of course, by including ``.cpp``
 files in a ``src/`` directory or documentation in a ``doc/``
 directory.
 
-.. note:: At present, toolkit documentation does not compile along
-   with the main Gamera documentation.  I have not yet decided whether
-   this should be considered a feature or a bug.
+**Note:** At present, toolkit documentation does not compile along with the main Gamera documentation.  I have not yet decided whether this should be considered a feature or a bug.
 
-The skeleton toolkit
-````````````````````
+### The skeleton toolkit
 
 For convenience, a minimal skeleton of a toolkit is provided and
-available from the files section of the `Gamera github site`__.
-
-.. __: https://github.com/hsnr-gamera
+available from the files section of the [Gamera github site](https://github.com/hsnr-gamera).
 
 This skeleton provides the very minimum needed to create a toolkit.
 You will need to change all the references to the toolkit name
 (Skeleton) throughout its source.  The ``rename.py`` script is
 provided for this purpose. For example::
 
-  python rename.py my_toolkit
+  ```python rename.py my_toolkit```
 
 will rename and edit all of the files to create a new toolkit called
 ``my_toolkit``.
 
-Editing the files
-`````````````````
+### Editing the files
+
 
 The files included in the skeleton toolkit are self-documenting.  They
 should require only minimal editing.  Mainly, toolkit authors will be
 adding their own Python modules and Gamera plugins to the toolkit.
 
-setup.py
-''''''''
+#### setup.py
+
 
 You only need to edit this file if you are doing anything more complex
 than installing Python modules and building Gamera plugins.  For
@@ -96,37 +126,35 @@ instance, if you are building and linking to a third-party library.
 Since this script is based on Python setuptools, the setuptools
 documentation is the best resource for how to do that.
 
-MANIFEST.in
-'''''''''''
+#### MANIFEST.in
+
 
 If you need to include more data files to your toolkit distrubution,
 you will need to edit this file.  The format is described in the
-distutils documentation.
+setuptools documentation.
 
-gamera/toolkits/my_toolkit/__init__.py
-''''''''''''''''''''''''''''''''''''''
+#### gamera/toolkits/my_toolkit/__init__.py
+
 
 If you want to add a drop-down menu to the Gamera GUI shell, you can
 edit this file.  It is self-documenting.  You will probably want to
 remove the example menu items that are included in the skeleton.
 
-Plugins
-'''''''
+#### Plugins
 
-Writing plugins is described in detail here__.  The Python metadata
+
+Writing plugins is described in detail [here](https://gamera.informatik.hsnr.de/docs/gamera-docs/writing_plugins.html).  The Python metadata
 files for a toolkit go in ``gamera/toolkits/my_toolkit/plugins/``, and
 the C++ source code goes in ``include/plugins/``.
 
-.. __: writing_plugins.html
+#### Python modules
 
-Python modules
-''''''''''''''
 
 The Python modules in your toolkit should go in
 ``gamera/my_toolkit/skeleton``.
 
-Building and installing a toolkit
----------------------------------
+## Building and installing a toolkit
+
 
 Building and installing toolkits is very similar to building and
 installing Gamera itself.  
@@ -139,8 +167,8 @@ the skeleton example in the INSTALL file.  You should redistribute
 this file with your toolkit.
 
 
-Authors and License
--------------------
+## Authors and License
+
 
 (c) 2004 Michael Droettboom  
 (c) 2023 Christoph Dalitz and Olaf Braun
