@@ -60,7 +60,7 @@ the Gamera Files section on SourceForge.
   version of Python (not the one that Apple provides) to carry out the
   instructions below.
 
-Gamera is built using the Python-standard Distutils system.  
+Gamera is built using the Python-standard Setuptools system.
 
 To build Gamera, open a X11 terminal and type::
 
