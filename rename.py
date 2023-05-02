@@ -51,7 +51,7 @@ def rename_files(dirname, names):
             for baseDir, dirName, fileNames in walk(full_path):
                 rename_files(baseDir, fileNames)
         if name.find(change_from) != -1:
-            new_name = name.replace(change_from)
+            new_name = name.replace(change_from, change_to)
             print("Renaming %s to %s" % (full_path, join(dirname, new_name)))
             rename(full_path, join(dirname, new_name))
 
