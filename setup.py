@@ -24,7 +24,7 @@ plugin_extensions = gamera_setup.generate_plugins(plugins, PLUGIN_PACKAGE)
 # anything more complex here, refer to the Python setuptools documentation.
 if __name__ == "__main__":
     setup(name=TOOLKIT_NAME,
-          version="4.1.0",
+          version="4.1.1",
           ext_modules=plugin_extensions,
           packages=[PACKAGE, PLUGIN_PACKAGE],
           include_dirs=['include/plugins'],
